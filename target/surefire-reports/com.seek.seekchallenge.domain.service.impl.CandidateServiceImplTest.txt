@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.seek.seekchallenge.domain.service.impl.CandidateServiceImplTest
 -------------------------------------------------------------------------------
-Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.185 s - in com.seek.seekchallenge.domain.service.impl.CandidateServiceImplTest
+Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.155 s - in com.seek.seekchallenge.domain.service.impl.CandidateServiceImplTest
