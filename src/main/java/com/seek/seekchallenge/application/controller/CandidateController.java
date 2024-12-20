@@ -35,28 +35,28 @@ public class CandidateController {
    @GetMapping(value = "${endpoint.candidate}")
    @ResponseStatus(HttpStatus.OK)
    @Operation(summary = "get all candidates", description = "gets all candidates in a list")
-   private @ResponseBody ResponseDto findAll() {
+   public @ResponseBody ResponseDto findAll() {
       return ResponseUtil.response(HttpStatus.OK, candidateService.findAll());
    }
 
    @GetMapping(value = "${endpoint.candidate.id}")
    @ResponseStatus(HttpStatus.OK)
    @Operation(summary = "get candidate by id", description = "gets a single candidate filtered by id")
-   private @ResponseBody ResponseDto candidateById(@Parameter(description = "key id candidate", required = true) @PathVariable final Integer id) {
+   public @ResponseBody ResponseDto candidateById(@Parameter(description = "key id candidate", required = true) @PathVariable final Integer id) {
       return ResponseUtil.response(HttpStatus.OK, candidateService.findById(id));
    }
 
    @PostMapping(value = "${endpoint.candidate}")
    @ResponseStatus(HttpStatus.CREATED)
    @Operation(summary = "create candidate", description = "create a new candidate")
-   private @ResponseBody ResponseDto saveCandidate(@Valid @RequestBody final CandidateDto candidateDto) {
+   public @ResponseBody ResponseDto saveCandidate(@Valid @RequestBody final CandidateDto candidateDto) {
       return ResponseUtil.response(HttpStatus.CREATED, candidateService.save(null, candidateDto));
    }
 
    @PutMapping(value = "${endpoint.candidate.id}")
    @Operation(summary = "update candidate", description = "update a candidate")
    @ResponseStatus(HttpStatus.OK)
-   private @ResponseBody ResponseDto updateCandidate(@Parameter(description = "key id candidate", required = true) @PathVariable final Integer id,
+   public @ResponseBody ResponseDto updateCandidate(@Parameter(description = "key id candidate", required = true) @PathVariable final Integer id,
          @Valid @RequestBody final CandidateDto candidateDto) {
       return ResponseUtil.response(HttpStatus.OK, candidateService.save(id, candidateDto));
    }
@@ -64,7 +64,7 @@ public class CandidateController {
    @DeleteMapping(value = "${endpoint.candidate.id}")
    @Operation(summary = "delete candidate", description = "delete a candidate")
    @ResponseStatus(HttpStatus.ACCEPTED)
-   private @ResponseBody ResponseDto deleteCandidate(@Parameter(description = "key id candidate", required = true) @PathVariable final Integer id) {
+   public @ResponseBody ResponseDto deleteCandidate(@Parameter(description = "key id candidate", required = true) @PathVariable final Integer id) {
       candidateService.delete(id);
       return ResponseUtil.response(HttpStatus.ACCEPTED, null);
    }

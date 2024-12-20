@@ -20,6 +20,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.HttpStatus;
@@ -29,12 +30,14 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import com.seek.seekchallenge.application.util.ResponseUtil;
 import com.seek.seekchallenge.domain.service.CandidateService;
+import com.seek.seekchallenge.infraestructure.config.SecurityConfig;
 import com.seek.seekchallenge.infraestructure.dto.CandidateDto;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-@WebMvcTest(CandidateController.class)
+@WebMvcTest(value = CandidateController.class, excludeAutoConfiguration = SecurityConfig.class)
+@AutoConfigureMockMvc(addFilters = false)
 @TestPropertySource(locations = "classpath:application.properties")
 class CandidateControllerTest {
 

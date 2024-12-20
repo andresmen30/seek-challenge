@@ -1,4 +1,4 @@
-package com.seek.seekchallenge.infraestructure.gender;
+package com.seek.seekchallenge.infraestructure.enums;
 
 import java.util.Locale;
 

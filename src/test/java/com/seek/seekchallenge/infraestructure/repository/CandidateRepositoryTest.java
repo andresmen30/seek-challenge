@@ -13,7 +13,7 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 import com.seek.seekchallenge.infraestructure.entity.Candidate;
-import com.seek.seekchallenge.infraestructure.gender.GenderEnum;
+import com.seek.seekchallenge.infraestructure.enums.GenderEnum;
 
 import lombok.extern.slf4j.Slf4j;
 

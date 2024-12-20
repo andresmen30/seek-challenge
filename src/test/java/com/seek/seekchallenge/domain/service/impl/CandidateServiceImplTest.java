@@ -15,17 +15,21 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ContextConfiguration;
 
 import com.seek.seekchallenge.domain.exception.AlreadyExistException;
 import com.seek.seekchallenge.domain.exception.RecordNotFoundException;
 import com.seek.seekchallenge.infraestructure.dto.CandidateDto;
 import com.seek.seekchallenge.infraestructure.entity.Candidate;
-import com.seek.seekchallenge.infraestructure.gender.GenderEnum;
+import com.seek.seekchallenge.infraestructure.enums.GenderEnum;
 import com.seek.seekchallenge.infraestructure.mapper.CandidateMapper;
 import com.seek.seekchallenge.infraestructure.repository.CandidateRepository;
 
 @SpringBootTest
+@AutoConfigureMockMvc(addFilters = false)
+@ContextConfiguration(classes = CandidateRepository.class)
 class CandidateServiceImplTest {
 
    @Mock

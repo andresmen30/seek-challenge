@@ -2,7 +2,7 @@ package com.seek.seekchallenge.infraestructure.entity;
 
 import java.math.BigDecimal;
 
-import com.seek.seekchallenge.infraestructure.gender.GenderEnum;
+import com.seek.seekchallenge.infraestructure.enums.GenderEnum;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;

@@ -11,6 +11,10 @@ services:
       DB_URL: jdbc:mysql://seek_db:3306/seek_challenge?createDatabaseIfNotExist=true&serverTimezone=UTC
       DB_USER_NAME: root
       DB_PASSWORD: 1234
+      TOKEN_SECRET_KEY: Y2Fubm9uX3Rva2VuX3NlY3JldF9mYWRyZ2Y3ZG5oY25zZGdmZ2dmc3Q=
+      TOKEN_USERNAME: andresmen30
+      TOKEN_PASSWORD: admin123
+      TOKEN_EXPIRATION: 1800000
     restart: always
     depends_on:
       seek_db:
@@ -25,6 +29,6 @@ services:
       MYSQL_DATABASE: seek_challenge
     restart: always
     healthcheck:
-      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      test: [ "CMD", "mysqladmin" ,"ping", "-h", "localhost" ]
       timeout: 10s
       retries: 10

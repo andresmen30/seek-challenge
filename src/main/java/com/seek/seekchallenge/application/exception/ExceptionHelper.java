@@ -5,10 +5,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import io.jsonwebtoken.ExpiredJwtException;
+
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.dao.InvalidDataAccessApiUsageException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.MissingServletRequestParameterException;
@@ -101,12 +104,22 @@ public class ExceptionHelper {
       return ResponseUtil.response(HttpStatus.BAD_REQUEST, ex.getMessage());
    }
 
+   @ExceptionHandler(AuthenticationException.class)
+   @ResponseStatus(HttpStatus.UNAUTHORIZED)
+   protected @ResponseBody ResponseDto handleException(final AuthenticationException ex) {
+      return ResponseUtil.response(HttpStatus.UNAUTHORIZED, ex.getMessage());
+   }
+
+   @ExceptionHandler(ExpiredJwtException.class)
+   @ResponseStatus(HttpStatus.UNAUTHORIZED)
+   protected @ResponseBody ResponseDto jsonWebTokenException(final ExpiredJwtException ex) {
+      return ResponseUtil.response(HttpStatus.UNAUTHORIZED, ex.getMessage());
+   }
+
    @ExceptionHandler(Exception.class)
    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
    protected @ResponseBody ResponseDto handleException(final Exception ex) {
       return ResponseUtil.response(HttpStatus.INTERNAL_SERVER_ERROR, ex.getMessage());
    }
-
-
 
 }

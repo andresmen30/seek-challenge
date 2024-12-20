@@ -1,5 +1,4 @@
 com/seek/seekchallenge/domain/service/impl/CandidateServiceImplTest.class
-com/seek/seekchallenge/SeekChallengeApplicationTests.class
 com/seek/seekchallenge/application/controller/CandidateControllerTest.class
 com/seek/seekchallenge/infraestructure/repository/CandidateRepositoryTest.class
 com/seek/seekchallenge/application/exception/ExceptionHelperTest.class

@@ -7,7 +7,7 @@ import org.mapstruct.Mapping;
 
 import com.seek.seekchallenge.infraestructure.dto.CandidateDto;
 import com.seek.seekchallenge.infraestructure.entity.Candidate;
-import com.seek.seekchallenge.infraestructure.gender.GenderEnum;
+import com.seek.seekchallenge.infraestructure.enums.GenderEnum;
 
 @Mapper(componentModel = "spring", imports = GenderEnum.class)
 public interface CandidateMapper {
