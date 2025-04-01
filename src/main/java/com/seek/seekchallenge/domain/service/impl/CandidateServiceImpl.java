@@ -36,7 +36,7 @@ public class CandidateServiceImpl implements CandidateService {
 
    @Override
    public CandidateDto save(final Integer id, final CandidateDto dto) {
-         final Candidate candidate = candidateMapper.toEntity(dto);
+      final Candidate candidate = candidateMapper.toEntity(dto);
       candidate.setId(id);
       if (id == null) {
          if (candidateRepository.findCandidateByEmail(dto.getEmail()).isPresent()) {

@@ -3,7 +3,6 @@ package com.seek.seekchallenge.infraestructure.config;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Profile;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -32,16 +31,16 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class SecurityConfig {
 
+   private static final String[] SWAGGER_FILTER = { "/api-docs", "/swagger-resources", "/swagger-resources/**", "/configuration/ui",
+         "/configuration/security", "/swagger-ui.html", "/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui-custom.html", };
+
+   private final JwtAuthFilter authFilter;
+
    @Value("${token.username}")
    private String tokenUsername;
 
    @Value("${token.password}")
    private String tokenPassword;
-
-   private static final String[] SWAGGER_FILTER = { "/api-docs", "/swagger-resources", "/swagger-resources/**", "/configuration/ui",
-         "/configuration/security", "/swagger-ui.html", "/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui-custom.html", };
-
-   private final JwtAuthFilter authFilter;
 
    @Bean
    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {

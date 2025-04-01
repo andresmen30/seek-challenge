@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -35,28 +34,28 @@ public class CandidateController {
    @GetMapping(value = "${endpoint.candidate}")
    @ResponseStatus(HttpStatus.OK)
    @Operation(summary = "get all candidates", description = "gets all candidates in a list")
-   public @ResponseBody ResponseDto findAll() {
+   public ResponseDto findAll() {
       return ResponseUtil.response(HttpStatus.OK, candidateService.findAll());
    }
 
    @GetMapping(value = "${endpoint.candidate.id}")
    @ResponseStatus(HttpStatus.OK)
    @Operation(summary = "get candidate by id", description = "gets a single candidate filtered by id")
-   public @ResponseBody ResponseDto candidateById(@Parameter(description = "key id candidate", required = true) @PathVariable final Integer id) {
+   public ResponseDto candidateById(@Parameter(description = "key id candidate", required = true) @PathVariable final Integer id) {
       return ResponseUtil.response(HttpStatus.OK, candidateService.findById(id));
    }
 
    @PostMapping(value = "${endpoint.candidate}")
    @ResponseStatus(HttpStatus.CREATED)
    @Operation(summary = "create candidate", description = "create a new candidate")
-   public @ResponseBody ResponseDto saveCandidate(@Valid @RequestBody final CandidateDto candidateDto) {
+   public ResponseDto saveCandidate(@Valid @RequestBody final CandidateDto candidateDto) {
       return ResponseUtil.response(HttpStatus.CREATED, candidateService.save(null, candidateDto));
    }
 
    @PutMapping(value = "${endpoint.candidate.id}")
    @Operation(summary = "update candidate", description = "update a candidate")
    @ResponseStatus(HttpStatus.OK)
-   public @ResponseBody ResponseDto updateCandidate(@Parameter(description = "key id candidate", required = true) @PathVariable final Integer id,
+   public ResponseDto updateCandidate(@Parameter(description = "key id candidate", required = true) @PathVariable final Integer id,
          @Valid @RequestBody final CandidateDto candidateDto) {
       return ResponseUtil.response(HttpStatus.OK, candidateService.save(id, candidateDto));
    }
@@ -64,7 +63,7 @@ public class CandidateController {
    @DeleteMapping(value = "${endpoint.candidate.id}")
    @Operation(summary = "delete candidate", description = "delete a candidate")
    @ResponseStatus(HttpStatus.ACCEPTED)
-   public @ResponseBody ResponseDto deleteCandidate(@Parameter(description = "key id candidate", required = true) @PathVariable final Integer id) {
+   public ResponseDto deleteCandidate(@Parameter(description = "key id candidate", required = true) @PathVariable final Integer id) {
       candidateService.delete(id);
       return ResponseUtil.response(HttpStatus.ACCEPTED, null);
    }

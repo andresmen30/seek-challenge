@@ -14,6 +14,4 @@ public interface CandidateService {
 
    void delete(final Integer id);
 
-
-
 }

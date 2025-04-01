@@ -17,7 +17,6 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
@@ -34,7 +33,7 @@ public class ExceptionHelper {
 
    @ExceptionHandler(MethodArgumentNotValidException.class)
    @ResponseStatus(HttpStatus.BAD_REQUEST)
-   protected @ResponseBody ResponseDto handleMethodArgumentNotValid(final MethodArgumentNotValidException ex) {
+   protected ResponseDto handleMethodArgumentNotValid(final MethodArgumentNotValidException ex) {
       final List<String> details = new ArrayList<>();
       ex.getBindingResult().getAllErrors().forEach(error -> {
          final String detail = StringUtils.join(((FieldError) error).getField(), " : ", Objects.requireNonNull(error.getDefaultMessage()));
@@ -45,7 +44,7 @@ public class ExceptionHelper {
 
    @ExceptionHandler(ConstraintViolationException.class)
    @ResponseStatus(HttpStatus.BAD_REQUEST)
-   protected @ResponseBody ResponseDto handleConstraintViolationException(final ConstraintViolationException ex) {
+   protected ResponseDto handleConstraintViolationException(final ConstraintViolationException ex) {
       final List<String> details = new ArrayList<>();
       ex.getConstraintViolations().forEach(constraintViolation -> {
          final String detail = StringUtils.join(constraintViolation.getPropertyPath(), " : ", constraintViolation.getMessage());
@@ -56,69 +55,69 @@ public class ExceptionHelper {
 
    @ExceptionHandler(MethodArgumentTypeMismatchException.class)
    @ResponseStatus(HttpStatus.BAD_REQUEST)
-   protected @ResponseBody ResponseDto handleMethodArgumentTypeMismatch(final MethodArgumentTypeMismatchException ex) {
+   protected ResponseDto handleMethodArgumentTypeMismatch(final MethodArgumentTypeMismatchException ex) {
       return ResponseUtil.response(HttpStatus.BAD_REQUEST, ex.getMessage());
    }
 
    @ExceptionHandler(MissingServletRequestParameterException.class)
    @ResponseStatus(HttpStatus.BAD_REQUEST)
-   protected @ResponseBody ResponseDto handleMissingServletRequestParameter(final MissingServletRequestParameterException ex) {
+   protected ResponseDto handleMissingServletRequestParameter(final MissingServletRequestParameterException ex) {
       return ResponseUtil.response(HttpStatus.BAD_REQUEST, ex.getMessage());
    }
 
    @ExceptionHandler(SQLException.class)
    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-   protected @ResponseBody ResponseDto handleSqlException(final SQLException ex) {
+   protected ResponseDto handleSqlException(final SQLException ex) {
       return ResponseUtil.response(HttpStatus.INTERNAL_SERVER_ERROR, ex.getMessage());
    }
 
    @ExceptionHandler(InvalidDataAccessApiUsageException.class)
    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-   protected @ResponseBody ResponseDto handleInvalidAccessApi(final InvalidDataAccessApiUsageException ex) {
+   protected ResponseDto handleInvalidAccessApi(final InvalidDataAccessApiUsageException ex) {
       return ResponseUtil.response(HttpStatus.INTERNAL_SERVER_ERROR, ex.getMessage());
 
    }
 
    @ExceptionHandler(HttpMessageNotReadableException.class)
    @ResponseStatus(HttpStatus.BAD_REQUEST)
-   protected @ResponseBody ResponseDto handleMessageReadable(final HttpMessageNotReadableException ex) {
+   protected ResponseDto handleMessageReadable(final HttpMessageNotReadableException ex) {
       return ResponseUtil.response(HttpStatus.BAD_REQUEST, ex.getMessage());
 
    }
 
    @ExceptionHandler(RecordNotFoundException.class)
    @ResponseStatus(HttpStatus.NOT_FOUND)
-   protected @ResponseBody ResponseDto recordNotFound(final RecordNotFoundException ex) {
+   protected ResponseDto recordNotFound(final RecordNotFoundException ex) {
       return ResponseUtil.response(HttpStatus.NOT_FOUND, ex.getMessage());
    }
 
    @ExceptionHandler(AlreadyExistException.class)
    @ResponseStatus(HttpStatus.BAD_REQUEST)
-   protected @ResponseBody ResponseDto alreadyExist(final AlreadyExistException ex) {
+   protected ResponseDto alreadyExist(final AlreadyExistException ex) {
       return ResponseUtil.response(HttpStatus.BAD_REQUEST, ex.getMessage());
    }
 
    @ExceptionHandler(EnumBadRequestException.class)
    @ResponseStatus(HttpStatus.BAD_REQUEST)
-   protected @ResponseBody ResponseDto enumBadRequest(final EnumBadRequestException ex) {
+   protected ResponseDto enumBadRequest(final EnumBadRequestException ex) {
       return ResponseUtil.response(HttpStatus.BAD_REQUEST, ex.getMessage());
    }
 
    @ExceptionHandler(AuthenticationException.class)
    @ResponseStatus(HttpStatus.UNAUTHORIZED)
-   protected @ResponseBody ResponseDto handleException(final AuthenticationException ex) {
+   protected ResponseDto handleException(final AuthenticationException ex) {
       return ResponseUtil.response(HttpStatus.UNAUTHORIZED, ex.getMessage());
    }
 
    @ExceptionHandler(ExpiredJwtException.class)
    @ResponseStatus(HttpStatus.UNAUTHORIZED)
-   protected @ResponseBody ResponseDto jsonWebTokenException(final ExpiredJwtException ex) {
+   protected ResponseDto jsonWebTokenException(final ExpiredJwtException ex) {
       return ResponseUtil.response(HttpStatus.UNAUTHORIZED, ex.getMessage());
    }
 
    @ExceptionHandler(Exception.class)
    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-   protected @ResponseBody ResponseDto handleException(final Exception ex) {
+   protected ResponseDto handleException(final Exception ex) {
       return ResponseUtil.response(HttpStatus.INTERNAL_SERVER_ERROR, ex.getMessage());
    }
 

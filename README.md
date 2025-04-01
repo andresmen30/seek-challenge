@@ -1,7 +1,8 @@
 # seek-challenge
+
 Project challenge seek
 
-## Comenzando  🏁
+## Comenzando 🏁
 
 _Proyecto CRUD de candidatos_
 
@@ -39,7 +40,6 @@ _**2**. Validar versión de maven._
 mvn -version
 ```
 
-
 ![img_3.png](src/main/resources/images/img_3.png)
 
 ### Docker
@@ -49,7 +49,6 @@ _**3**. Validar versión de docker._
 ```
 docker --version
 ```
-
 
 ![img_5.png](src/main/resources/images/img_5.png)
 
