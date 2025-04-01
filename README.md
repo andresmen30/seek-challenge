@@ -29,7 +29,7 @@ _**1**. Para la primera instancia necesitaremos confirmar que la versión de JDK
 java -version
 ```
 
-![img_2.png](img_2.png)
+![img_2.png](src/main/resources/images/img_2.png)
 
 ### Maven
 
@@ -40,7 +40,7 @@ mvn -version
 ```
 
 
-![img_3.png](img_3.png)
+![img_3.png](src/main/resources/images/img_3.png)
 
 ### Docker
 
@@ -51,7 +51,7 @@ docker --version
 ```
 
 
-![img_5.png](img_5.png)
+![img_5.png](src/main/resources/images/img_5.png)
 
 ## Compilación y despliegue ⚙️ 🚀
 
