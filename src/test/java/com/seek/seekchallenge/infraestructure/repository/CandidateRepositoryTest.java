@@ -18,7 +18,7 @@ import com.seek.seekchallenge.infraestructure.enums.GenderEnum;
 
 import lombok.extern.slf4j.Slf4j;
 
-@ActiveProfiles("test")
+@ActiveProfiles("prod")
 @Slf4j
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)

@@ -14,7 +14,7 @@ services:
       TOKEN_USERNAME: andresmen30
       TOKEN_PASSWORD: admin123
       TOKEN_EXPIRATION: 1800000
-      SPRING_PROFILE: test
+      SPRING_PROFILE: prod
     restart: always
     depends_on:
       seek_db:
