@@ -19,6 +19,7 @@ import com.seek.seekchallenge.application.util.ResponseUtil;
 import com.seek.seekchallenge.domain.service.CandidateService;
 import com.seek.seekchallenge.infraestructure.dto.CandidateDto;
 import com.seek.seekchallenge.infraestructure.dto.ResponseDto;
+import com.seek.seekchallenge.util.ResourcePath;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -26,44 +27,44 @@ import lombok.RequiredArgsConstructor;
 @Tag(name = "Candidate", description = "CRUD")
 @RestController
 @RequiredArgsConstructor
-@RequestMapping(value = "${rest.request.mapping}")
+@RequestMapping(ResourcePath.BASE_PATH_API)
 public class CandidateController {
 
    private final CandidateService candidateService;
 
-   @GetMapping(value = "${endpoint.candidate}")
+   @GetMapping(ResourcePath.ENDPOINT_CANDIDATE)
    @ResponseStatus(HttpStatus.OK)
    @Operation(summary = "get all candidates", description = "gets all candidates in a list")
    public ResponseDto findAll() {
       return ResponseUtil.response(HttpStatus.OK, candidateService.findAll());
    }
 
-   @GetMapping(value = "${endpoint.candidate.id}")
+   @GetMapping(ResourcePath.ENDPOINT_CANDIDATE_ID)
    @ResponseStatus(HttpStatus.OK)
    @Operation(summary = "get candidate by id", description = "gets a single candidate filtered by id")
-   public ResponseDto candidateById(@Parameter(description = "key id candidate", required = true) @PathVariable final Integer id) {
+   public ResponseDto candidateById(@Parameter(description = "key id candidate", required = true) @PathVariable(name = "id") final Integer id) {
       return ResponseUtil.response(HttpStatus.OK, candidateService.findById(id));
    }
 
-   @PostMapping(value = "${endpoint.candidate}")
+   @PostMapping(ResourcePath.ENDPOINT_CANDIDATE)
    @ResponseStatus(HttpStatus.CREATED)
    @Operation(summary = "create candidate", description = "create a new candidate")
    public ResponseDto saveCandidate(@Valid @RequestBody final CandidateDto candidateDto) {
       return ResponseUtil.response(HttpStatus.CREATED, candidateService.save(null, candidateDto));
    }
 
-   @PutMapping(value = "${endpoint.candidate.id}")
+   @PutMapping(ResourcePath.ENDPOINT_CANDIDATE_ID)
    @Operation(summary = "update candidate", description = "update a candidate")
    @ResponseStatus(HttpStatus.OK)
-   public ResponseDto updateCandidate(@Parameter(description = "key id candidate", required = true) @PathVariable final Integer id,
+   public ResponseDto updateCandidate(@Parameter(description = "key id candidate", required = true) @PathVariable(name = "id") final Integer id,
          @Valid @RequestBody final CandidateDto candidateDto) {
       return ResponseUtil.response(HttpStatus.OK, candidateService.save(id, candidateDto));
    }
 
-   @DeleteMapping(value = "${endpoint.candidate.id}")
+   @DeleteMapping(ResourcePath.ENDPOINT_CANDIDATE_ID)
    @Operation(summary = "delete candidate", description = "delete a candidate")
    @ResponseStatus(HttpStatus.ACCEPTED)
-   public ResponseDto deleteCandidate(@Parameter(description = "key id candidate", required = true) @PathVariable final Integer id) {
+   public ResponseDto deleteCandidate(@Parameter(description = "key id candidate", required = true) @PathVariable(name = "id") final Integer id) {
       candidateService.delete(id);
       return ResponseUtil.response(HttpStatus.ACCEPTED, null);
    }

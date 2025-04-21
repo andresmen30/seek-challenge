@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <!-- Create Tables -->
+    <include file="initial/table/create_20250420210255_candidate.xml" relativeToChangelogFile="true"/>
+
+    <!-- Insert data -->
+    <include file="data/insert/insert_20250420195802_candidate.xml" relativeToChangelogFile="true"/>
+
+</databaseChangeLog>

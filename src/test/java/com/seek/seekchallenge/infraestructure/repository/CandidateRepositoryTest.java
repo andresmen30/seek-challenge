@@ -11,12 +11,14 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.test.context.ActiveProfiles;
 
 import com.seek.seekchallenge.infraestructure.entity.Candidate;
 import com.seek.seekchallenge.infraestructure.enums.GenderEnum;
 
 import lombok.extern.slf4j.Slf4j;
 
+@ActiveProfiles("test")
 @Slf4j
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
@@ -28,7 +30,7 @@ class CandidateRepositoryTest {
    private Candidate saveCandidate;
 
    @BeforeEach
-   public void setUp() {
+   void setUp() {
       log.info("(setUp) insert data test");
       saveCandidate = Candidate
             .builder()
@@ -42,7 +44,7 @@ class CandidateRepositoryTest {
    }
 
    @AfterEach
-   public void tearDown() {
+   void tearDown() {
       log.info("(setUp) delete data test");
       candidateRepository.delete(saveCandidate);
       log.info("(setUp) delete data test");

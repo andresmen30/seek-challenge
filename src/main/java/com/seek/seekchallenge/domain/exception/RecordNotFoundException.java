@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
-import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
@@ -12,7 +11,6 @@ import lombok.Getter;
 @EqualsAndHashCode(callSuper = false)
 public class RecordNotFoundException extends RuntimeException implements Serializable {
 
-   @Builder.Default
    private String message = "the %s not found";
 
    public RecordNotFoundException(Object... values) {

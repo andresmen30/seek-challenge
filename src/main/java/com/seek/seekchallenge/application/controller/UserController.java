@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.seek.seekchallenge.application.filter.service.JwtService;
 import com.seek.seekchallenge.infraestructure.dto.AccessTokenDto;
 import com.seek.seekchallenge.infraestructure.dto.UserInfoDto;
+import com.seek.seekchallenge.util.ResourcePath;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -20,12 +21,12 @@ import lombok.RequiredArgsConstructor;
 @Tag(name = "User", description = "TOKEN")
 @RestController
 @RequiredArgsConstructor
-@RequestMapping(value = "${rest.request.token}")
+@RequestMapping(ResourcePath.BASE_PATH_AUTH)
 public class UserController {
 
    private final JwtService jwtService;
 
-   @PostMapping("${endpoint.user.generate.token}")
+   @PostMapping(ResourcePath.ENDPOINT_GENERATE_TOKEN)
    @ResponseStatus(HttpStatus.OK)
    @Operation(summary = "generate token", description = "generate token")
    public AccessTokenDto authenticateAndGetToken(@Valid @RequestBody UserInfoDto userInfo) {

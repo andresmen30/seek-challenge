@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="insert_20250420195802_candidate_001" author="Andres.Mendez">
+        <insert tableName="candidate">
+            <column name="name" value="John Doe"/>
+            <column name="email" value="john.doe@seek.com"/>
+            <column name="gender" value="MALE"/>
+            <column name="salary_expected" value="1500.00"/>
+        </insert>
+        <insert tableName="candidate">
+            <column name="name" value="Jane Smith"/>
+            <column name="email" value="andres.mendez@seek.com"/>
+            <column name="gender" value="MALE"/>
+            <column name="salary_expected" value="3000.00"/>
+        </insert>
+        <insert tableName="candidate">
+            <column name="name" value="Andres Mendez"/>
+            <column name="email" value="alex.taylor@seek.com"/>
+            <column name="gender" value="OTHER"/>
+            <column name="salary_expected" value="2100.00"/>
+        </insert>
+        <insert tableName="candidate">
+            <column name="name" value="Veronica Forero"/>
+            <column name="email" value="vero.forero@seek.com"/>
+            <column name="gender" value="FEMALE"/>
+            <column name="salary_expected" value="2100.00"/>
+        </insert>
+        <insert tableName="candidate">
+            <column name="name" value="Falcao Garcia"/>
+            <column name="email" value="falcao.garcia@seek.com"/>
+            <column name="gender" value="MALE"/>
+            <column name="salary_expected" value="2100.00"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>

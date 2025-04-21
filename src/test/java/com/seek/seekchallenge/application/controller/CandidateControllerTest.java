@@ -19,7 +19,6 @@ import org.apache.commons.lang3.math.NumberUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -32,6 +31,7 @@ import com.seek.seekchallenge.application.util.ResponseUtil;
 import com.seek.seekchallenge.domain.service.CandidateService;
 import com.seek.seekchallenge.infraestructure.config.SecurityConfig;
 import com.seek.seekchallenge.infraestructure.dto.CandidateDto;
+import com.seek.seekchallenge.util.ResourcePath;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -46,15 +46,6 @@ class CandidateControllerTest {
 
    @MockBean
    private CandidateService candidateService;
-
-   @Value("${rest.request.mapping}")
-   private String restUri;
-
-   @Value("${endpoint.candidate}")
-   private String endpointCandidate;
-
-   @Value("${endpoint.candidate.id}")
-   private String endpointCandidateId;
 
    private CandidateDto candidateDto;
 
@@ -75,7 +66,7 @@ class CandidateControllerTest {
       log.info("(saveCandidate) request: {}", candidateDto);
       when(candidateService.save(any(), any())).thenReturn(candidateDto);
       mockMvc
-            .perform(post(StringUtils.join(restUri, endpointCandidate))
+            .perform(post(StringUtils.join(ResourcePath.BASE_PATH_API, ResourcePath.ENDPOINT_CANDIDATE))
                   .contentType(MediaType.APPLICATION_JSON)
                   .content(ResponseUtil.objectToJsonString(candidateDto)))
             .andExpect(status().isCreated())
@@ -95,7 +86,7 @@ class CandidateControllerTest {
       log.info("(updateCandidate) request: {}", candidateDto);
       when(candidateService.save(any(), any())).thenReturn(candidateDto);
       mockMvc
-            .perform(put(StringUtils.join(restUri, endpointCandidateId), 8)
+            .perform(put(StringUtils.join(ResourcePath.BASE_PATH_API, ResourcePath.ENDPOINT_CANDIDATE_ID), 8)
                   .contentType(MediaType.APPLICATION_JSON)
                   .content(ResponseUtil.objectToJsonString(candidateDto)))
             .andExpect(status().isOk())
@@ -114,7 +105,8 @@ class CandidateControllerTest {
    void deleteCandidate() throws Exception {
       log.info("(deleteCandidate)");
       mockMvc
-            .perform(delete(StringUtils.join(restUri, endpointCandidateId), 8).contentType(MediaType.APPLICATION_JSON))
+            .perform(
+                  delete(StringUtils.join(ResourcePath.BASE_PATH_API, ResourcePath.ENDPOINT_CANDIDATE_ID), 8).contentType(MediaType.APPLICATION_JSON))
             .andExpect(status().isAccepted())
             .andExpect(jsonPath("$.message", is(HttpStatus.ACCEPTED.name())))
             .andExpect(jsonPath("$.time", notNullValue()));
@@ -126,7 +118,7 @@ class CandidateControllerTest {
       log.info("(findAll)");
       when(candidateService.findAll()).thenReturn(List.of(candidateDto));
       mockMvc
-            .perform(get(StringUtils.join(restUri, endpointCandidate)).contentType(MediaType.APPLICATION_JSON))
+            .perform(get(StringUtils.join(ResourcePath.BASE_PATH_API, ResourcePath.ENDPOINT_CANDIDATE)).contentType(MediaType.APPLICATION_JSON))
             .andExpect(status().isOk())
             .andExpect(jsonPath("$.message", is(HttpStatus.OK.name())))
             .andExpect(jsonPath("$.data", notNullValue()))
@@ -139,7 +131,7 @@ class CandidateControllerTest {
    void findById() throws Exception {
       when(candidateService.findById(any())).thenReturn(candidateDto);
       mockMvc
-            .perform(get(StringUtils.join(restUri, endpointCandidateId), 8).contentType(MediaType.APPLICATION_JSON))
+            .perform(get(StringUtils.join(ResourcePath.BASE_PATH_API, ResourcePath.ENDPOINT_CANDIDATE_ID), 8).contentType(MediaType.APPLICATION_JSON))
             .andExpect(status().isOk())
             .andExpect(jsonPath("$.message", is(HttpStatus.OK.name())))
             .andExpect(jsonPath("$.time", notNullValue()))

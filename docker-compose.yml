@@ -4,7 +4,6 @@ services:
     build:
       context: .
     image: seek-challenge
-    mem_limit: 512m
     ports:
       - "8080:8080"
     environment:
@@ -15,6 +14,7 @@ services:
       TOKEN_USERNAME: andresmen30
       TOKEN_PASSWORD: admin123
       TOKEN_EXPIRATION: 1800000
+      SPRING_PROFILE: test
     restart: always
     depends_on:
       seek_db:

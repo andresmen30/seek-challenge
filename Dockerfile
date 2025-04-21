@@ -9,7 +9,7 @@ COPY pom.xml .
 COPY src ./src
 
 # Build the project and create a JAR file
-RUN mvn clean install -DskipTests -Dflyway.skip=true
+RUN mvn clean install -DskipTests -Ptest
 
 # Use a minimal base image for the final stage
 FROM amazoncorretto:17.0.13
